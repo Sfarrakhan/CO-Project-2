@@ -1,0 +1,6 @@
+.data
+	prompt: .asciiz "Enter the string."
+	message: .asciiz "\nThe converted string is "
+.text
+main:
+	
