@@ -1,6 +1,40 @@
 .data
-	prompt: .asciiz "Enter the string."
+	buffer: .space 512
+	prompt: .asciiz "Enter the string: "
 	message: .asciiz "\nThe converted string is "
+	ifstringis0: .asciiz "string is empty.\
+	wrong_input: .asciiz "Invalid base 34 Number"
 .text
+	chk_emp_str:
+		la $a0, ifstringis0
+		li $v0, 4
+		syscall
+		j exit
+	chk_wrong_input:
+		la $a0, 
 main:
+	la $a0, prompt
+	li $v0, 4
+	syscall
+	#prompt user for string
+
+	li $v0, 8 #take in input
+	
+	la $a0, buffer
+	li $a1, 20
+	
+	move $t0, $a0
+	syscall
+	
+	la $a0, message
+	li $v0, 4
+	syscall
+
+	la $a0, buffer
+	move $a0, $t0
+	li $v0, 4
+	sycall
+
+	li $v0, 10
+	syscall
 	
